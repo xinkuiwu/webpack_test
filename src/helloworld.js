@@ -1,4 +1,4 @@
 export function helloworld() {
-    const str ='hello webpack1'
+    const str ='hello webpack'
     return str
 }
