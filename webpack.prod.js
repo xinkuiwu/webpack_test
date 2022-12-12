@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 
 const setMPA = () => {
     const entry = {};
@@ -23,7 +24,7 @@ const setMPA = () => {
         HtmlWebpackPlugins.push( new HtmlWebpackPlugin({
             template: path.join(__dirname, `src/${pageName}/index.html`),
             filename: `${pageName}.html`,
-            chunks: [pageName],
+            chunks: [`vendors`, pageName],
             inject: true,
             minify: {
                 html5: true,
@@ -51,7 +52,7 @@ module.exports = {
         path:path.join(__dirname, 'dist'),
         filename: '[name]_[chunkhash:8].js'
     },
-    mode: 'none',
+    mode: 'production',
     module:{
         rules:[
             {
@@ -139,9 +140,35 @@ module.exports = {
                 cssProcessor: require('cssnano')
             }
         ),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        // new HtmlWebpackExternalsPlugin({
+        //     externals: [
+        //       {
+        //         module: 'react',
+        //         entry: 'https://unpkg.com/react@16/umd/react.development.js',
+        //         global: 'React',
+        //       },{
+        //         module: 'react-dom',
+        //         entry: 'https://unpkg.com/react-dom@16/umd/react-dom.development.js',
+        //         global: 'ReactDOM',
+        //       },
+        //     ],
+        //   })
     ].concat(HtmlWebpackPlugins),
-    // source map
-    devtool: 'inline-source-map'
+    optimization: {
+        splitChunks: {
+            minSize: 0,
+            cacheGroups: {
+                commons: {
+                    // test:/(react|react-dom)/,
+                    // name: 'vendors',
+                    // chunks: 'all'
+                    name: 'commons',
+                    chunks: 'all',
+                    minChunks: 2
+                }
+            }
+        }
+    }
 
 }
