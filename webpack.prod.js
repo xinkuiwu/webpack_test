@@ -160,12 +160,12 @@ module.exports = {
             minSize: 0,
             cacheGroups: {
                 commons: {
-                    // test:/(react|react-dom)/,
-                    // name: 'vendors',
-                    // chunks: 'all'
-                    name: 'commons',
-                    chunks: 'all',
-                    minChunks: 2
+                    test:/(react|react-dom)/,
+                    name: 'vendors',
+                    chunks: 'all'
+                    // name: 'commons',
+                    // chunks: 'all',
+                    // minChunks: 2
                 }
             }
         }
