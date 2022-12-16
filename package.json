@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "eslint-plugin-jsx-a11y": "^6.2.1",
+    "large-number-xinkui": "0.0.3",
     "lib-flexible": "^0.3.2"
   }
 }

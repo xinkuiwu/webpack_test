@@ -1,0 +1,18 @@
+{
+  "name": "large-number-xinkui",
+  "version": "0.0.3",
+  "description": "add for big int numbers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "terser-webpack-plugin": "^1.3.0",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4"
+  }
+}

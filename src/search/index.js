@@ -6,7 +6,7 @@ import './search.less'
 import logo from './images/logo.png'
 import '../../common/index'
 import {a} from './tree-shaking'
-
+import  largeNumber  from "large-number-xinkui";
 class Search extends React.Component {
     constructor(){
         super(...arguments)
@@ -27,9 +27,11 @@ class Search extends React.Component {
     }
     render() {
         const aStr = a()
+        const bStr = largeNumber('111','9')
         const {Text} = this.state
+        
         return <div className="search-text">
-            {aStr}
+            {aStr+bStr}
             {
                 Text?<Text></Text>: null
             }
